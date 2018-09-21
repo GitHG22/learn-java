@@ -26,19 +26,39 @@ class match1{
     private String pname = new String();
     private Scanner read = new Scanner(System.in);
     public void getname(){
-        System.out.println("Please enter your name: ");
+        System.out.println("Please enter your name[X]: ");
         pname = read.nextLine();
-    }
+     }
 }
 
+
 class match2{
-    private String[] pname= new String[2];
+    private String[] pname = new String[2];
     private Scanner read = new Scanner(System.in);
+    private int chance = 1;
+    private int row, col;
     public void getname(){
-        System.out.println("Enter your name Player 1: ");
+        System.out.println("Enter your name Player 1[X]: ");
         pname[0] = read.nextLine();
-        System.out.println("Enter your name Player 2: ");
+        System.out.println("Enter your name Player 2[O]: ");
         pname[1] = read.nextLine();
+    }
+    public void play(){
+        System.out.print("It is the turn of " + pname[chance-1]);
+        if(chance==1){
+            System.out.println("[X]");
+        }
+        else {
+            System.out.println("[O]");
+        }
+        System.out.print("Enter the row: ");
+        row = read.nextInt();
+        System.out.print("Enter the column: ");
+        col = read.nextInt();
+        checkwin();
+    }
+    public void checkwin(){
+
     }
 }
 
