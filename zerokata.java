@@ -30,8 +30,8 @@ class table {
     public int checkwin(){
         int checkX = 0;
         int checkO = 0;
-        int checkXhori = 0;
-        int checkOhori = 0;
+        int checkXverti = 0;
+        int checkOverti = 0;
         int checkXcross1 = 0;
         int checkOcross1 = 0;
         int checkXcross2 = 0;
@@ -48,25 +48,28 @@ class table {
                     checkO+=1;
                 }
 
-                if(values[i][j] == 'X'){
-                    checkXhori+=1;
+                if(values[j][i] == 'X'){
+                    checkXverti+=1;
                 }
-                else if(values[i][j] == 'O'){
-                    checkOhori+=1;
+                else if(values[j][i] == 'O'){
+                    checkOverti+=1;
                 }
             }
+
             if(checkX==3){
                 return 1;
             }
             else if(checkO==3){
                 return 2;
             }
-            if(checkXhori==3){
+
+            if(checkXverti==3){
                 return 1;
             }
-            else if(checkOhori==3){
+            else if(checkOverti==3){
                 return 2;
             }
+
             if(values[i][i] == 'X'){
                 checkXcross1+=1;
             }
@@ -80,21 +83,30 @@ class table {
             else if(values[i][2-i] == 'O'){
                 checkOcross2+=1;
             }
-            checkX=0;
-            checkO=0;
 
-        if(checkXcross1==3){
-            return 1;
-        }
-        else if(checkOcross1==3){
-            return 2;
-        }
-        if(checkXcross2==3){
-            return 1;
-        }
-        else if(checkOcross2==3){
-            return 2;
-        }
+            if(checkXcross1==3){
+                return 1;
+            }
+            else if(checkOcross1==3){
+                return 2;
+            }
+            if(checkXcross2==3){
+                return 1;
+            }
+            else if(checkOcross2==3){
+                return 2;
+            }
+
+
+            checkX = 0;
+            checkO = 0;
+            checkXverti = 0;
+            checkOverti = 0;
+            // checkXcross1 = 0;
+            // checkOcross1 = 0;
+            // checkXcross2 = 0;
+            // checkOcross2 = 0;
+
 
       }
         return 0;
@@ -120,7 +132,7 @@ class match1{
 class match2{
     private String[] pname = new String[2];
     private Scanner read = new Scanner(System.in);
-    private int chance = 1;
+    private int chance = 0;
     private int row=1, col=1;
     private table m2 = new table();
     private char charplay;
@@ -136,15 +148,15 @@ class match2{
         int winner;
         do{
           System.out.print("It is the turn of " + pname[chance]);
-          if(chance==1){
+          if(chance==0){
               charplay = 'X';
               System.out.println("[X]");
-              chance = 0;
+              chance = 1;
           }
           else {
               charplay = 'O';
               System.out.println("[O]");
-              chance = 1;
+              chance = 0;
           }
           System.out.print("Enter the row: ");
           row = read.nextInt();
@@ -154,11 +166,11 @@ class match2{
           winner = m2.checkwin();
           m2.printtable();
           if (winner == 1){
-              System.out.print("Player 1 [" + charplay + "] " + pname + " won!");
+              System.out.println("Player 1 [" + charplay + "] " + pname[winner-1] + " won!\n");
               return;
           }
           else if (winner == 2){
-              System.out.print("Player 2 [" + charplay + "] " + pname + " won!");
+              System.out.println("Player 2 [" + charplay + "] " + pname[winner-1] + " won!\n");
               return;
               }
 
