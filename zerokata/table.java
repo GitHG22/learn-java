@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class table {
     private char hori = '-'; /** the character which is printed as the horizontal lines*/
     private char verti = '|'; /** the character which is printed as the vertical lines*/
@@ -23,6 +25,20 @@ class table {
 
     public void set(int r,int c, char player){
         values[r-1][c-1] = player;
+    }
+
+    public void init(){
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                values[i][j] = ' ';
+            }
+        }
+    }
+
+    // set() For single player
+    public void set(){
+        Random rand = new Random();
+        values[rand.nextInt(3)][rand.nextInt(3)] = 'O';
     }
 
     public int checkwin(){
