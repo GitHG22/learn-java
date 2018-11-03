@@ -20,7 +20,7 @@ class table {
         }
         System.out.print('\n');
 
-        System.out.println(" " + values[2][0] + " " + verti + " " + values[2][1] + " " + verti + " " + values[1][2] + " ");
+        System.out.println(" " + values[2][0] + " " + verti + " " + values[2][1] + " " + verti + " " + values[2][2] + " ");
     }
 
     public void set(int r,int c, char player){
@@ -133,33 +133,37 @@ class match2{
     }
 
     public void play(){
-        System.out.print("It is the turn of " + pname[chance-1]);
-        if(chance==1){
-            charplay = 'X';
-            System.out.println("[X]");
-        }
-        else {
-            charplay = 'O';
-            System.out.println("[O]");
-        }
-        System.out.print("Enter the row: ");
-        row = read.nextInt();
-        System.out.print("Enter the column: ");
-        col = read.nextInt();
-        m2.set(row, col, charplay);
-        int winner = m2.checkwin();
-        m2.printtable();
-        if(winner == 0){
-            return;
-        }
-        else if (winner == 1){
-            System.out.print("Player 1 [" + charplay + "] " + pname + " won!");
-        }
-        else if (winner == 2){
-            System.out.print("Player 2 [" + charplay + "] " + pname + " won!");
-            }
-        }
+        int winner;
+        do{
+          System.out.print("It is the turn of " + pname[chance]);
+          if(chance==1){
+              charplay = 'X';
+              System.out.println("[X]");
+              chance = 0;
+          }
+          else {
+              charplay = 'O';
+              System.out.println("[O]");
+              chance = 1;
+          }
+          System.out.print("Enter the row: ");
+          row = read.nextInt();
+          System.out.print("Enter the column: ");
+          col = read.nextInt();
+          m2.set(row, col, charplay);
+          winner = m2.checkwin();
+          m2.printtable();
+          if (winner == 1){
+              System.out.print("Player 1 [" + charplay + "] " + pname + " won!");
+              return;
+          }
+          else if (winner == 2){
+              System.out.print("Player 2 [" + charplay + "] " + pname + " won!");
+              return;
+              }
 
+        }while(winner==0);
+    }
 
 }
 
@@ -176,18 +180,22 @@ class zerokata{
             );
             opt = read.nextInt();
             switch(opt){
+
                 case 1:
                     match1 one = new match1();
                     one.getname();
-                    break;
+                break;
+
                 case 2:
                     match2 two = new match2();
                     two.getname();
                     two.play();
-                    break;
+                break;
+
                 default:
                     System.out.println("Okay, bye!");
-                    break;
+                break;
+
             }
             }while(opt!=0);
 
