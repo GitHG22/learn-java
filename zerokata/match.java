@@ -39,7 +39,7 @@ class match{
               System.out.print(pname[chance]);
           }
 
-          if(chance==2){
+          else if(chance==2){
               System.out.print(pname[1]);
           }
 
@@ -55,12 +55,19 @@ class match{
           }
 
           if(chance!=2){
-              System.out.print("Enter the row: ");
-              row = read.nextInt();
-              System.out.print("Enter the column: ");
-              col = read.nextInt();
-              m2.set(row, col, charplay);
+              int check;
+              do{
+                  System.out.print("Enter the row: ");
+                  row = read.nextInt();
+                  System.out.print("Enter the column: ");
+                  col = read.nextInt();
+                  check = m2.set(row, col, charplay);
+                  if(check!=0){
+                      System.out.println("The element is already filled. Please enter the row and column again.");
+                  }
+              }while(check!=0);
           }
+
 
           if(chance==2){
               m2.set();

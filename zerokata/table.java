@@ -23,8 +23,12 @@ class table {
         System.out.println(" " + values[2][0] + " " + verti + " " + values[2][1] + " " + verti + " " + values[2][2] + " ");
     }
 
-    public void set(int r,int c, char player){
+    public int set(int r,int c, char player){
+        if(validate(r-1,c-1)!=0){
+            return 1;
+        }
         values[r-1][c-1] = player;
+        return 0;
     }
 
     public void init(){
@@ -38,7 +42,16 @@ class table {
     // set() For single player
     public void set(){
         Random rand = new Random();
-        values[rand.nextInt(3)][rand.nextInt(3)] = 'O';
+        int r, c;
+        do{
+            r = rand.nextInt(3);
+            c = rand.nextInt(3);
+        }while(validate(r, c)!=0);
+        values[r][c] = 'O';
+    }
+
+    private int validate(int r, int c){
+        return (values[r][c]==' ') ? 0 : 1;
     }
 
     public int checkwin(){
