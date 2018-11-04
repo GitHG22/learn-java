@@ -6,7 +6,7 @@ class zerokata{
         match current = new match();
         int opt;
         do {
-            System.out.println("Choose the number of players :- " +
+            System.out.print("Choose the number of players :- " +
              "\n1. One Player" +
              "\n2. Two Players" +
              "\n0. Exit" +

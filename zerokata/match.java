@@ -27,12 +27,12 @@ class match{
     public void cleanup(){
         chance = 0;
         m2.init();
-        pname[0] = null;
-        pname[1] = null;
+        pname[0] = "";
+        pname[1] = "";
     }
 
     public void play(){
-        int winner;
+        int winner, count = 0;
          do{
           System.out.print("It is the turn of ");
           if(chance!=2){
@@ -74,6 +74,7 @@ class match{
               chance = 0;
           }
 
+          count++;
           winner = m2.checkwin();
           m2.printtable();
           if (winner == 1){
@@ -84,7 +85,10 @@ class match{
               System.out.println("Player 2 [" + charplay + "] " + pname[winner-1] + " won!\n");
               return;
               }
-
+          if(count==9){
+              System.out.println("The match has been drawn!");
+              return;
+          }
         }while(winner==0);
     }
 
